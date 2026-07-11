@@ -17,7 +17,7 @@ namespace Backend.Logica
         public static bool EnviarCorreoConPin(string destinatario, string nombreUsuario, string pin)
         {
             string remitente = "barberiaproyectopm@gmail.com";  // Tu correo
-            string clave = "wrevyexhhoznzyok";  // Tu contraseña de aplicación de Gmail
+            string clave = "";  // Tu contraseña de aplicación de Gmail
 
             try
             {
