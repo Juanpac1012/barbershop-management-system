@@ -142,7 +142,7 @@ namespace Backend.Logica
         public static bool EnviarCorreoConfirmacionCita(string destinatario, string nombreCliente, DateTime fechaCita, string servicio)
         {
             string remitente = "barberiaproyectopm@gmail.com";
-            string clave = "wrevyexhhoznzyok";
+            string clave = "";
 
             try
             {
