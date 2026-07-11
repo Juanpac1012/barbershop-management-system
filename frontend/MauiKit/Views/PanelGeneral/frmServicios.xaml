@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelGeneral.frmServicios"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    x:Name="serviciosPage"
+    BackgroundColor="{DynamicResource BasePageColor}">
+
+    <views:BasePage.PageContent>
+        <Grid Padding="15">
+            <RefreshView Grid.Row="1">
+                <CollectionView
+                    x:Name="servicioCollectionView"
+                    SelectionMode="None"
+                    EmptyView="No hay servicios disponibles"
+                    ItemsSource="{Binding ListaServicios}">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="15" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame 
+                                Padding="0"
+                                CornerRadius="14"
+                                HasShadow="True"
+                                BackgroundColor="White"
+                                BorderColor="{DynamicResource Gray400}">
+
+                                <Grid ColumnDefinitions="*,Auto"  
+                                      RowDefinitions="Auto,Auto,Auto,Auto" 
+                                      Padding="15">
+
+                                    <!-- Fila 1: Nombre y Precio -->
+                                    <HorizontalStackLayout Grid.Row="0" Grid.Column="0" Spacing="8">
+                                        <Label FontFamily="MaterialIcons" 
+                                               Text="&#xF04B;" 
+                                               TextColor="#1A73E8" 
+                                               FontSize="20" 
+                                               VerticalOptions="Center"/>
+                                        <Label Text="{Binding nombre}"
+                                               FontSize="18"
+                                               FontAttributes="Bold"
+                                               TextColor="#212121" />
+                                    </HorizontalStackLayout>
+
+                                    <Label Grid.Row="0" Grid.Column="1"
+                                           Text="{Binding precio, StringFormat='₡{0:N2}'}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="#1A73E8"
+                                           HorizontalOptions="End" />
+
+                                    <!-- Fila 2: Descripción -->
+                                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                           Text="{Binding descripcion}"
+                                           FontSize="14"
+                                           TextColor="#616161"
+                                           Margin="0,6,0,8"
+                                           MaxLines="2"
+                                           LineBreakMode="TailTruncation" />
+
+                                    <!-- Fila 3: Duración -->
+                                    <Frame Grid.Row="2" Grid.Column="0"
+                                           Padding="8,5"
+                                           CornerRadius="10"
+                                           BackgroundColor="#E3F2FD"
+                                           HorizontalOptions="Start">
+                                        <Label Text="{Binding duracion_minutos, StringFormat='⏱ {0} minutos'}"
+                                               FontSize="12"
+                                               TextColor="#0D47A1"/>
+                                    </Frame>
+
+                                    <!-- Fila 4: Botón a la derecha -->
+                                    <Button 
+                                            x:Name="btnAgendar"
+                                            Grid.Row="2" Grid.Column="2"
+                                            Text="Agendar"
+                                            CornerRadius="8"
+                                            WidthRequest="100"
+                                            HeightRequest="30"
+                                            Margin="0,0,0,0"
+                                            Padding="0"
+                                            FontSize="12"
+                                            BackgroundColor="#1A73E8"
+                                            TextColor="White"
+                                            FontAttributes="Bold"
+                                             Clicked="btnAgendar_Clicked">
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button" 
+                                                         Binding="{Binding disponible}" 
+                                                         Value="false">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="BackgroundColor" Value="#BDBDBD"/>
+                                                <Setter Property="Text" Value="NO DISP."/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </Grid>
+    </views:BasePage.PageContent>
+</views:BasePage>

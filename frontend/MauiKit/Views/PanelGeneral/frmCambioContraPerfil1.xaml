@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelGeneral.frmCambioContraPerfil1"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    Title=""
+    BackgroundColor="{DynamicResource BasePageColor}">
+
+    <views:BasePage.PageContent>
+        <Grid ColumnDefinitions="{OnIdiom Desktop='2*, 6*, 2*', Phone='Auto, *, Auto', Tablet='2*, 6*, 2*', Default='Auto, *, Auto'}">
+            <StackLayout Grid.Column="1" Padding="30,60,30,30" Spacing="20" VerticalOptions="StartAndExpand">
+
+                <Image
+                    Source="ic_password_reset_success.png"
+                    HeightRequest="100"
+                    HorizontalOptions="Center" />
+
+                <Label
+                    Text="Actualizar Contraseña"
+                    FontSize="24"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    TextColor="{DynamicResource PrimaryColor}" />
+
+                <Label
+                    Text="Para continuar con el cambio de contraseña, se enviará un código de verificación a tu correo electrónico."
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    TextColor="{DynamicResource BaseTextColor}"
+                    FontSize="16" />
+
+                <Label
+                    Text="Luego de ingresar el código, podrás establecer una nueva contraseña."
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    TextColor="{DynamicResource BaseTextColor}"
+                    FontSize="16" />
+
+                <Button
+                    x:Name="btnContinuar"
+                    Text="Continuar"
+                    Clicked="btnContinuar_Clicked"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="White"
+                    HeightRequest="50"
+                    CornerRadius="14" />
+            </StackLayout>
+        </Grid>
+    </views:BasePage.PageContent>
+    </views:BasePage>

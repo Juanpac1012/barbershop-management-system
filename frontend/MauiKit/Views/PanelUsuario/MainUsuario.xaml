@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  x:Class="MauiKit.Views.PanelUsuario.MainUsuario"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:localization="clr-namespace:MauiKit.Resources.Translations"
+    xmlns:pages="clr-namespace:MauiKit.Views.Samples;assembly=MauiKit"
+    xmlns:views="clr-namespace:MauiKit.Views;assembly=MauiKit"
+    xmlns:panelUsuario="clr-namespace:MauiKit.Views.PanelUsuario;assembly=MauiKit"
+    xmlns:panelGeneral="clr-namespace:MauiKit.Views.PanelGeneral;assembly=MauiKit"
+    android:TabbedPage.IsSmoothScrollEnabled="False"
+    android:TabbedPage.IsSwipePagingEnabled="False"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+    BarBackgroundColor="{DynamicResource BasePageColor}"
+    BarTextColor="{DynamicResource BaseTextColor}"
+    SelectedTabColor="{DynamicResource PrimaryColor}"
+    UnselectedTabColor="{DynamicResource BaseIconColor}">
+
+    <panelGeneral:frmInicio Title="Inicio">
+        <panelGeneral:frmInicio.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.Home}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelGeneral:frmInicio.IconImageSource>
+    </panelGeneral:frmInicio>
+
+    <panelGeneral:frmProductos Title="Productos">
+        <panelGeneral:frmProductos.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.LocalMall}" 
+                Color="{DynamicResource BaseIconColor}" />
+        </panelGeneral:frmProductos.IconImageSource>
+    </panelGeneral:frmProductos>
+
+    <panelGeneral:frmServicios Title="Servicios">
+        <panelGeneral:frmServicios.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.ContentCut}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelGeneral:frmServicios.IconImageSource>
+    </panelGeneral:frmServicios>
+
+    <panelUsuario:frmAgendarCita Title="Agendar Cita">
+        <panelUsuario:frmAgendarCita.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.EventNote}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelUsuario:frmAgendarCita.IconImageSource>
+    </panelUsuario:frmAgendarCita>
+
+    <panelGeneral:frmCarrito Title="Carrito">
+        <panelGeneral:frmCarrito.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.ShoppingCart}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelGeneral:frmCarrito.IconImageSource>
+    </panelGeneral:frmCarrito>
+
+    <panelGeneral:frmPerfil Title="Perfil">
+        <panelGeneral:frmPerfil.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.AccountCircle}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelGeneral:frmPerfil.IconImageSource>
+    </panelGeneral:frmPerfil>
+
+    </TabbedPage>

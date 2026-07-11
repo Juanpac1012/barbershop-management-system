@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage x:Class="MauiKit.Views.PanelAdmin.MainAdmin"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:localization="clr-namespace:MauiKit.Resources.Translations"
+    xmlns:pages="clr-namespace:MauiKit.Views.Samples;assembly=MauiKit"
+    xmlns:views="clr-namespace:MauiKit.Views;assembly=MauiKit"
+    xmlns:panelUsuario="clr-namespace:MauiKit.Views.PanelUsuario;assembly=MauiKit"
+    xmlns:panelAdmin="clr-namespace:MauiKit.Views.PanelAdmin;assembly=MauiKit"
+    xmlns:panelGeneral="clr-namespace:MauiKit.Views.PanelGeneral;assembly=MauiKit"
+    android:TabbedPage.IsSmoothScrollEnabled="False"
+    android:TabbedPage.IsSwipePagingEnabled="False"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+    BarBackgroundColor="{DynamicResource BasePageColor}"
+    BarTextColor="{DynamicResource BaseTextColor}"
+    SelectedTabColor="{DynamicResource PrimaryColor}"
+    UnselectedTabColor="{DynamicResource BaseIconColor}">
+
+    <panelGeneral:frmInicio Title="Inicio">
+        <panelGeneral:frmInicio.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.Home}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelGeneral:frmInicio.IconImageSource>
+    </panelGeneral:frmInicio>
+
+    <panelAdmin:frmGestionServicios Title="Servicios y Productos">
+        <panelAdmin:frmGestionServicios.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.ContentCut}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelAdmin:frmGestionServicios.IconImageSource>
+    </panelAdmin:frmGestionServicios>
+
+    <panelAdmin:frmGestionarUsuarios Title="Gestion Usuarios">
+        <panelAdmin:frmGestionarUsuarios.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.Contacts}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelAdmin:frmGestionarUsuarios.IconImageSource>
+    </panelAdmin:frmGestionarUsuarios>
+
+    <panelAdmin:frmHistorialTodasCitas Title="Historial Citas">
+        <panelAdmin:frmHistorialTodasCitas.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.EventNote}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelAdmin:frmHistorialTodasCitas.IconImageSource>
+    </panelAdmin:frmHistorialTodasCitas>
+
+    <panelGeneral:frmPerfil Title="Perfil">
+        <panelGeneral:frmPerfil.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialDesign"
+                Glyph="{x:Static views:MaterialDesignIcons.AccountCircle}"
+                Color="{DynamicResource BaseIconColor}" />
+        </panelGeneral:frmPerfil.IconImageSource>
+    </panelGeneral:frmPerfil>
+
+
+    </TabbedPage>

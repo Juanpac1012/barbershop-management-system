@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelGeneral.frmProductos"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    x:Name="productPage"
+    BackgroundColor="{DynamicResource BasePageColor}">
+
+    <views:BasePage.PageContent>
+        <Grid Padding="15">
+            <RefreshView Grid.Row="1">
+                <CollectionView
+                    x:Name="productosCollectionView"
+                    SelectionMode="None"
+                    EmptyView="No hay productos disponibles"
+                    ItemsSource="{Binding ListaProductos}">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="15" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame 
+                                Padding="0"
+                                CornerRadius="14"
+                                HasShadow="True"
+                                BackgroundColor="{DynamicResource White}"
+                                BorderColor="{DynamicResource Gray400}">
+
+                                <Grid ColumnDefinitions="*,Auto" 
+                                      RowDefinitions="Auto,Auto,Auto" 
+                                      Padding="15">
+
+                                    <HorizontalStackLayout Grid.Column="0" Grid.Row="0" Spacing="10">
+                                        <Label FontFamily="MaterialIcons" Text="&#xE8CB;" 
+                                               TextColor="{DynamicResource PrimaryColor}" FontSize="20" VerticalOptions="Center"/>
+                                        <Label Text="{Binding nombre}" 
+                                               FontSize="18" FontAttributes="Bold"
+                                               TextColor="{DynamicResource Black}" VerticalOptions="Center"/>
+                                    </HorizontalStackLayout>
+
+                                    <Label Grid.Column="1" Grid.Row="0"
+                                           Text="{Binding precio, StringFormat='₡{0:N2}'}"
+                                           FontSize="18" FontAttributes="Bold"
+                                           TextColor="{DynamicResource PrimaryColor}" HorizontalOptions="End"/>
+
+                                    <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                                           Text="{Binding descripcion}"
+                                           FontSize="14" TextColor="#757575"
+                                           Margin="0,5,0,5" MaxLines="2"
+                                           LineBreakMode="TailTruncation"/>
+
+                                    <Frame Grid.Column="0" Grid.Row="2"
+                                           Padding="8,4" 
+                                           CornerRadius="10"
+                                           BackgroundColor="#E8F5E9"
+                                           HorizontalOptions="Start">
+                                        <Label Text="{Binding stock, StringFormat='{0} disponibles'}"
+                                               FontSize="12" TextColor="#2E7D32"/>
+                                    </Frame>
+
+                                    <Button Grid.Column="1" Grid.Row="2"
+                                            Text="+ Carrito"
+                                            CornerRadius="8"
+                                            WidthRequest="100"
+                                            HeightRequest="30"
+                                            Margin="0,0,0,0"
+                                            Padding="0"
+                                            FontSize="12"
+                                            BackgroundColor="{DynamicResource PrimaryColor}"
+                                            TextColor="{DynamicResource White}"
+                                            FontAttributes="Bold"
+                                            Clicked="AgregarAlCarritoClicked"
+                                            CommandParameter="{Binding .}">
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button" 
+                                                         Binding="{Binding stock}" 
+                                                         Value="0">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="BackgroundColor" Value="#BDBDBD"/>
+                                                <Setter Property="Text" Value="Sin stock"/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </Grid>
+    </views:BasePage.PageContent>
+</views:BasePage>

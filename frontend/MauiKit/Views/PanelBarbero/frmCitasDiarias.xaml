@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelBarbero.frmCitasDiarias"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"    
+    xmlns:views="clr-namespace:MauiKit.Views"
+    BackgroundColor="{DynamicResource BasePageColor}"
+    BaseTitleColor="{DynamicResource BaseTextColor}"
+    Title="Citas del Día">
+
+    <views:BasePage.PageContent>
+        <Grid Padding="15" RowDefinitions="Auto, *">
+            <Grid Padding="0,15" ColumnDefinitions="Auto, *" ColumnSpacing="10">
+                <Label
+                    Grid.Column="0"
+                    FontFamily="MaterialDesign"
+                    FontSize="26"
+                    Text="&#xF773;"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label
+                        Style="{StaticResource Title2}"
+                        Text="Citas de Hoy"
+                        VerticalOptions="Center" />
+                    <Label
+                        x:Name="lblFecha"
+                        FontSize="14"
+                        TextColor="{DynamicResource Gray600}" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <RefreshView
+                Grid.Row="1"
+                IsRefreshing="{Binding IsBusy}"
+                Command="{Binding LoadCitasCommand}">
+                <CollectionView x:Name="citasDiaBarberoCollectionView" SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="12" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="15"
+               CornerRadius="20"
+               BackgroundColor="{DynamicResource White}"
+               BorderColor="{DynamicResource Gray400}"
+               HasShadow="True">
+                                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                                    <!-- Contenido superior (igual que antes) -->
+                                    <Label
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="{Binding fechaHora, StringFormat='{0:hh:mm tt}'}"
+                    TextColor="{DynamicResource PrimaryColor}" />
+
+                                    <Frame
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Padding="8,4"
+                    BackgroundColor="{Binding estado}"
+                    CornerRadius="12"
+                    HorizontalOptions="End">
+                                        <Label
+                        FontSize="12"
+                        Text="{Binding estado}"
+                        TextColor="{DynamicResource Black}"
+                        VerticalTextAlignment="Center" />
+                                    </Frame>
+
+                                    <Label
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Margin="0,6"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    Text="{Binding servicio.nombre}"
+                    TextColor="{DynamicResource BaseTextColor}" />
+
+                                    <Label
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    FontSize="14"
+                    Text="{Binding usuario.nombre, StringFormat='Cliente: {0}'}"
+                    TextColor="{DynamicResource BaseTextColor}" />
+
+                                    <Label
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    FontSize="14"
+                    Text="{Binding fechaHora, StringFormat='Fecha: {0:dd/MM/yyyy}'}"
+                    TextColor="{DynamicResource BaseTextColor}" />
+
+                                    <!-- Nueva distribución para evitar cortes -->
+                                    <VerticalStackLayout
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,8,0,0"
+                    Spacing="8">
+
+                                        <!-- Duración y Precio en horizontal -->
+                                        <HorizontalStackLayout Spacing="16">
+                                            <Label
+                            FontSize="14"
+                            Text="{Binding servicio.duracion_minutos, StringFormat='Duración: {0} min'}"
+                            TextColor="{DynamicResource BaseTextColor}" />
+                                            <Label
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            Text="{Binding servicio.precio, StringFormat='Precio: ₡{0:N2}'}"
+                            TextColor="{DynamicResource OkColor}" />
+                                        </HorizontalStackLayout>
+
+                                        <!-- Botones alineados a la derecha -->
+                                        <HorizontalStackLayout
+                        HorizontalOptions="End"
+                        Spacing="8">
+
+                                            <Button
+                            x:Name="btnMarcarTerminada"
+                            HeightRequest="40"
+                            CornerRadius="10"
+                            BackgroundColor="{DynamicResource Green}"
+                            Text="Terminar"
+                            TextColor="{DynamicResource White}"
+                            FontSize="14"
+                            Clicked="btnMarcarTerminada_Clicked"
+                            CommandParameter="{Binding idCita}">
+                                                <Button.Triggers>
+                                                    <DataTrigger 
+                                    TargetType="Button"
+                                    Binding="{Binding estado}"
+                                    Value="Pendiente">
+                                                        <Setter Property="IsVisible" Value="True" />
+                                                    </DataTrigger>
+                                                    <DataTrigger 
+                                    TargetType="Button"
+                                    Binding="{Binding estado}"
+                                    Value="Terminada">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                    <DataTrigger 
+                                    TargetType="Button"
+                                    Binding="{Binding estado}"
+                                    Value="Cancelada">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Button.Triggers>
+                                            </Button>
+
+                                            <Button
+                            x:Name="btnMarcarNoAsistio"
+                            HeightRequest="40"
+                            CornerRadius="10"
+                            BackgroundColor="{DynamicResource Red}"
+                            Text="No Asistió"
+                            TextColor="{DynamicResource White}"
+                            FontSize="14"
+                            Clicked="btnMarcarNoAsistio_Clicked"
+                            CommandParameter="{Binding idCita}">
+                                                <Button.Triggers>
+                                                    <DataTrigger 
+                                    TargetType="Button"
+                                    Binding="{Binding estado}"
+                                    Value="Pendiente">
+                                                        <Setter Property="IsVisible" Value="True" />
+                                                    </DataTrigger>
+                                                    <DataTrigger 
+                                    TargetType="Button"
+                                    Binding="{Binding estado}"
+                                    Value="Terminada">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                    <DataTrigger 
+                                    TargetType="Button"
+                                    Binding="{Binding estado}"
+                                    Value="Cancelada">
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Button.Triggers>
+                                            </Button>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </Grid>
+    </views:BasePage.PageContent>
+</views:BasePage>

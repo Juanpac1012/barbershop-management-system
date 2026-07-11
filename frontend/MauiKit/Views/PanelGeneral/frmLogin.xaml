@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="MauiKit.Views.PanelGeneral.frmLogin"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiKit.Controls"
+             xmlns:handlers="clr-namespace:MauiKit.Handlers"
+             xmlns:localization="clr-namespace:MauiKit.Resources.Translations"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:views="clr-namespace:MauiKit.Views"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid ColumnDefinitions="{OnIdiom Desktop='2*, 6*, 2*', Phone='Auto, *, Auto', Tablet='2*, 6*, 2*', Default='Auto, *, Auto'}">
+        <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto">
+
+            <VerticalStackLayout
+                Padding="25,25,25,0"
+                HorizontalOptions="Fill"
+                Spacing="25"
+                VerticalOptions="Start">
+
+                <Border
+                   Padding="0"
+                   Background="{DynamicResource White}"
+                   HeightRequest="90"
+                   HorizontalOptions="Center"
+                   Stroke="{DynamicResource White}"
+                   StrokeShape="{RoundRectangle CornerRadius=16}"
+                   StrokeThickness="3"
+                   WidthRequest="90">
+
+                    <controls:RoundedCornerImage
+                        Background="{DynamicResource White}"
+                        HeightRequest="80"  
+                        WidthRequest="80"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Source="logobarberia.png"
+                        Stroke="Transparent"
+                        StrokeShape="{RoundRectangle CornerRadius=60}"/>
+
+                </Border>
+
+                <Label
+                   FontAttributes="Bold"
+                   FontSize="22" 
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource Title2}"
+                   Text="BarberShop" />
+
+                <Label
+                   FontSize="17"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource PrimaryLabel}"
+                   Text="Inicia sesión" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                Grid.Row="1"
+                Padding="30"
+                HorizontalOptions="Fill"
+                Spacing="10" 
+                VerticalOptions="Center">
+                <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                    <handlers:BorderlessEntry
+                         x:Name="txtCorreo"
+                         HeightRequest="50"
+                         Keyboard="Default" 
+                         Placeholder="Correo electrónico"            
+                         PlaceholderColor="{DynamicResource BaseTextColor}" />
+                </Border>
+
+                <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                    <Grid>
+                        <handlers:BorderlessEntry
+                             x:Name="txtContraseña"
+                             HeightRequest="50"
+                             IsPassword="True"
+                             Keyboard="Default"
+                             Placeholder="Contraseña"
+                             PlaceholderColor="{DynamicResource BaseTextColor}"
+                             HorizontalOptions="Fill" />
+                        <Button
+                            x:Name="btnAlternarContraseña"
+                            BackgroundColor="Transparent"
+                            BorderWidth="0"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Clicked="btnAlternarContraseña_Clicked">
+                            <Button.ImageSource>
+                                <FontImageSource
+                                    FontFamily="MauiKitIcons"
+                                    Glyph="{x:Static views:MauiKitIcons.EyeOff}" 
+                                    Size="24"
+                                    Color="Black" />
+                            </Button.ImageSource>
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <Label
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="End"
+                    Text="¿Olvidaste tu contraseña?"
+                    TextColor="{DynamicResource BaseTextColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="btnCambioContraseña_Clicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Button
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    Clicked="btnLogin_Clicked"
+                    CornerRadius="14"
+                    HeightRequest="50"
+                    Margin="0,10,0,0" 
+                    Text="Iniciar Sesión"
+                    TextColor="{DynamicResource White}" />
+
+                <Label
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="End">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                               FontFamily="RegularFont"
+                               Text="¿No tienes una cuenta?"
+                               TextColor="{DynamicResource BaseTextColor}" />
+                            <Span Text="  " />
+                            <Span
+                               FontAttributes="Bold"
+                               FontFamily="SemiBoldFont"
+                               FontSize="16"
+                               Text="Regístrate"
+                               TextColor="{DynamicResource PrimaryColor}">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="btnRegistro_Clicked" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

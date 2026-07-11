@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelBarbero.frmHistorialCitas" 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    BackgroundColor="{DynamicResource BasePageColor}"
+    BaseTitleColor="{DynamicResource BaseTextColor}"
+    Title="Historial de Citas">
+
+    <views:BasePage.PageContent>
+        <Grid Padding="15" RowDefinitions="Auto, *">
+
+            <Label
+                Grid.Row="0"
+                Text="Historial de Citas"
+                Style="{StaticResource Title2}"
+                VerticalOptions="Center" />
+
+            <RefreshView
+                Grid.Row="1"
+                IsRefreshing="{Binding IsBusy}"
+                Command="{Binding LoadCitasCommand}">
+                <CollectionView x:Name="citasBarberoCollectionView"
+                    SelectionMode="None"
+                    IsGrouped="True"
+                    ItemsSource="{Binding CitasTerminadas}">
+
+                    <CollectionView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Padding="10"
+                                CornerRadius="10"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                HasShadow="False">
+                                <VerticalStackLayout Spacing="2">
+                                    <Label
+                                        Text="{Binding Key, StringFormat='{0:dddd, dd MMMM yyyy}'}"
+                                        FontSize="16"
+                                        FontAttributes="Bold"
+                                        TextColor="{DynamicResource White}"/>
+                                    <Label
+                                        Text="{Binding TotalGanancias, StringFormat='Ganancias del día: ₡{0:N2}'}"
+                                        FontSize="14"
+                                        TextColor="{DynamicResource White}" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.GroupHeaderTemplate>
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="12" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Padding="15"
+                                CornerRadius="20"
+                                BackgroundColor="{DynamicResource White}"
+                                BorderColor="{DynamicResource Gray400}"
+                                HasShadow="True">
+                                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto, Auto">
+                                    <!-- Nombre del servicio -->
+                                    <Label Grid.Column="0" Grid.Row="0"
+                                           Text="{Binding servicio.nombre}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="#1A73E8" />
+
+                                    <!-- Estado - Posición mejorada -->
+                                    <Frame Grid.Column="1" Grid.Row="0"
+                                           Padding="8,4"
+                                           CornerRadius="12"
+                                           HorizontalOptions="End"
+                                           BackgroundColor="{Binding estado}">
+                                        <Label Text="{Binding estado}"
+                                               FontSize="12"
+                                               TextColor="{DynamicResource Black}"
+                                               VerticalTextAlignment="Center" />
+                                    </Frame>
+
+                                    <!-- Información del cliente -->
+                                    <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                                           Text="{Binding usuario.nombre, StringFormat='Cliente: {0}'}"
+                                           FontSize="14"
+                                           TextColor="{DynamicResource BaseTextColor}" />
+
+                                    <!-- Fecha y hora en español -->
+                                    <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"
+                                           Text="{Binding fechaHora, StringFormat='{0:dddd, dd/MM/yyyy hh:mm tt}'}"
+                                           FontSize="14"
+                                           TextColor="{DynamicResource BaseTextColor}" />
+
+                                    <!-- Duración y precio en misma línea -->
+                                    <HorizontalStackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" 
+                                                          Spacing="16" Margin="0,8,0,0">
+                                        <Label Text="{Binding servicio.duracion_minutos, StringFormat='Duración: {0} min'}"
+                                               FontSize="14"
+                                               TextColor="{DynamicResource BaseTextColor}" />
+                                        <Label Text="{Binding servicio.precio, StringFormat='Precio: ₡{0:N2}'}"
+                                               FontSize="14"
+                                               FontAttributes="Bold"
+                                               TextColor="{DynamicResource OkColor}" />
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </Grid>
+    </views:BasePage.PageContent>
+</views:BasePage>

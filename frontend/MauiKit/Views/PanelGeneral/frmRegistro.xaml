@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+             x:Class="MauiKit.Views.PanelGeneral.frmRegistro"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiKit.Controls"
+             xmlns:handlers="clr-namespace:MauiKit.Handlers"
+             xmlns:localization="clr-namespace:MauiKit.Resources.Translations"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:views="clr-namespace:MauiKit.Views"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False" >
+
+    <ScrollView VerticalScrollBarVisibility="Default">
+        <Grid ColumnDefinitions="{OnIdiom Desktop='2*, 6*, 2*', Phone='Auto, *, Auto', Tablet='2*, 6*, 2*', Default='Auto, *, Auto'}">
+            <Grid Grid.Column="1" RowDefinitions="Auto, *, Auto" RowSpacing="40">
+                <VerticalStackLayout
+                    Padding="30,30,30,0"
+                    HorizontalOptions="Fill"
+                    Spacing="25"
+                    VerticalOptions="Start">
+                    <Border
+                       Padding="0"
+                       Background="{DynamicResource White}"
+                       HeightRequest="90"
+                       HorizontalOptions="Center"
+                       Stroke="{DynamicResource White}"
+                       StrokeShape="{RoundRectangle CornerRadius=16}"
+                       StrokeThickness="3"
+                       WidthRequest="90">
+                        <controls:RoundedCornerImage
+                           Background="{DynamicResource White}"
+                           HeightRequest="80"
+                           HorizontalOptions="Center"
+                           Source="logobarberia.png"
+                           Stroke="Transparent"
+                           StrokeShape="{RoundRectangle CornerRadius=60}"
+                           VerticalOptions="Center"
+                           WidthRequest="80" />
+                    </Border>
+                    <Label
+                       FontAttributes="Bold"
+                       FontSize="19"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource Title2}"
+                       Text="Registro" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                   Grid.Row="1"
+                   Padding="30,10"
+                   HorizontalOptions="Fill"
+                   Spacing="18"
+                   VerticalOptions="Start">
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <handlers:BorderlessEntry
+                            x:Name="txtNombre"
+                            HeightRequest="45"
+                            Keyboard="Default"
+                            Placeholder="Nombre"
+                            PlaceholderColor="{DynamicResource BaseTextColor}" />
+                    </Border>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <handlers:BorderlessEntry
+                            x:Name="txtApellido"
+                            HeightRequest="45"
+                            Keyboard="Default"
+                            Placeholder="Apellido"
+                            PlaceholderColor="{DynamicResource BaseTextColor}" />
+                    </Border>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <handlers:BorderlessEntry
+                            x:Name="txtCorreo"
+                            HeightRequest="45"
+                            Keyboard="Email"
+                            Placeholder="Correo electrónico"
+                            PlaceholderColor="{DynamicResource BaseTextColor}" />
+                    </Border>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <handlers:BorderlessEntry
+                           x:Name="txtTelefono"
+                           HeightRequest="45"
+                           Keyboard="Numeric"
+                           Placeholder="Teléfono"
+                           PlaceholderColor="{DynamicResource BaseTextColor}" />
+                    </Border>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <Grid>
+                            <handlers:BorderlessEntry
+                                x:Name="txtContraseña"
+                                HeightRequest="45"
+                                IsPassword="True"
+                                Keyboard="Default"
+                                Placeholder="Contraseña"
+                                PlaceholderColor="{DynamicResource BaseTextColor}" 
+                                HorizontalOptions="Fill"/>
+
+                            <Button
+                               x:Name="btnAlternarContraseña"
+                               BackgroundColor="Transparent"
+                               BorderWidth="0"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"
+                               Clicked="btnAlternarContraseña_Clicked">
+                                <Button.ImageSource>
+                                    <FontImageSource
+                                        FontFamily="MauiKitIcons"
+                                        Glyph="{x:Static views:MauiKitIcons.EyeOff}" 
+                                        Size="24"
+                                        Color="Black" />
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+
+                    </Border>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <Grid>
+                            <handlers:BorderlessEntry
+                                x:Name="txtConfirContraseña"
+                                HeightRequest="45"
+                                IsPassword="True"
+                                Keyboard="Default"
+                                Placeholder="Confirmar contraseña"
+                                PlaceholderColor="{DynamicResource BaseTextColor}" />
+
+                            <Button
+                               x:Name="btnAlternarContraseñaConfir"
+                               BackgroundColor="Transparent"
+                               BorderWidth="0"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"
+                               Clicked="btnAlternarContraseñaConfir_Clicked">
+                                <Button.ImageSource>
+                                    <FontImageSource
+                                        FontFamily="MauiKitIcons"
+                                        Glyph="{x:Static views:MauiKitIcons.EyeOff}" 
+                                        Size="24"
+                                        Color="Black" />
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                   Grid.Row="2"
+                   Padding="30,30"
+                   HorizontalOptions="Fill"
+                   Spacing="50"
+                   VerticalOptions="Start">
+                    <Button
+                       BackgroundColor="{DynamicResource PrimaryColor}"
+                       Clicked="btnRegistro_Clicked"
+                       CornerRadius="14"
+                       HeightRequest="50"
+                       Text="Registrarse"
+                       TextColor="{DynamicResource White}" />
+                    <Label
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                  FontFamily="RegularFont"
+                                  Text="¿Ya tienes una cuenta pero necesitas activarla?"
+                                  TextColor="{DynamicResource BaseTextColor}" />
+                                <Span Text="  " />
+                                <Span
+                                  FontAttributes="Bold"
+                                  FontFamily="SemiBoldFont"
+                                  FontSize="16"
+                                  Text="Activar cuenta"
+                                  TextColor="{DynamicResource PrimaryColor}">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="btnActivarCuenta_Clicked" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+
+            </Grid>
+
+            <Label
+               Grid.ColumnSpan="3"
+               Margin="20"
+               HorizontalOptions="End"
+               HorizontalTextAlignment="End"
+               Style="{StaticResource IconCloseLabelStyle}"
+               TextColor="{DynamicResource BaseTextColor}"
+               VerticalOptions="Start">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="btnVolverAtras_Clicked" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

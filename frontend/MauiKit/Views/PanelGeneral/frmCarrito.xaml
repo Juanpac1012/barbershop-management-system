@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelGeneral.frmCarrito"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    x:Name="carritoPage"
+    BackgroundColor="{DynamicResource BasePageColor}"
+    Padding="0,0,0,60">
+
+    <views:BasePage.PageContent>
+        <Grid RowDefinitions="*,80">
+            <RefreshView
+                IsRefreshing="{Binding IsRefreshing}"
+                Command="{Binding RefrescarCommand}">
+                <ScrollView VerticalScrollBarVisibility="Never">
+                    <VerticalStackLayout Padding="20" Spacing="15">
+                        <StackLayout BindableLayout.ItemsSource="{Binding CarritoItems}" Spacing="10">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Padding="15"
+                                           CornerRadius="20"
+                                           BackgroundColor="{DynamicResource White}"
+                                           BorderColor="{DynamicResource Gray400}"
+                                           HasShadow="True">
+                                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                                            <!-- Nombre del producto y precio -->
+                                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                                <Label FontSize="16" 
+                                                       Text="{Binding Nombre}" 
+                                                       FontAttributes="Bold"
+                                                       TextColor="{DynamicResource Black}"/>
+                                                <Label FontSize="16" 
+                                                       Text="{Binding Precio, StringFormat='₡{0:F2}'}" 
+                                                       TextColor="{DynamicResource PrimaryColor}"
+                                                       FontAttributes="Bold"/>
+                                            </VerticalStackLayout>
+
+                                            <!-- Cantidad -->
+                                            <Label Grid.Column="1"
+                                                   FontSize="16"
+                                                   Text="{Binding Cantidad, StringFormat='{0} ×'}"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="End"
+                                                   TextColor="{DynamicResource Gray600}"/>
+
+                                            <!-- Botón eliminar -->
+                                            <Button Grid.Column="2"
+                                                    x:Name="btnEliminarCarrito"
+                                                    Text="Eliminar"
+                                                    Clicked="btnEliminarCarrito_Clicked"
+                                                    CommandParameter="{Binding .}"
+                                                    CornerRadius="8"
+                                                    MinimumWidthRequest="80"
+                                                    HeightRequest="35"
+                                                    FontSize="13"
+                                                    BackgroundColor="{DynamicResource Red}"
+                                                    TextColor="{DynamicResource White}"
+                                                    VerticalOptions="Center"/>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+
+                        <!-- Total del carrito -->
+                        <Frame BackgroundColor="{DynamicResource LightGray200}"
+                               CornerRadius="12"
+                               Padding="15">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label FontSize="18" 
+                                       Text="Subtotal:" 
+                                       TextColor="{DynamicResource Black}" 
+                                       FontAttributes="Bold"/>
+                                <Label Grid.Column="1" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"
+                                       Text="{Binding CarritoTotal, StringFormat='₡{0:F2}'}" 
+                                       TextColor="{DynamicResource PrimaryColor}"/>
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </RefreshView>
+
+            <!-- Botón de pago -->
+            <Frame Grid.Row="1" 
+                   Padding="0"
+                   BackgroundColor="{DynamicResource White}"
+                   HasShadow="True">
+                <Button x:Name="btnPagar"
+                        Clicked="btnPagar_Clicked"
+                        Margin="20,10,20,15"
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        CornerRadius="14"
+                        HeightRequest="50"
+                        HorizontalOptions="Fill"
+                        Text="Realizar Pago"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="{DynamicResource White}"/>
+            </Frame>
+        </Grid>
+    </views:BasePage.PageContent>
+</views:BasePage>

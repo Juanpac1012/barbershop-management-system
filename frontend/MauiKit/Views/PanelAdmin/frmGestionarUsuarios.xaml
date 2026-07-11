@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage  x:Class="MauiKit.Views.PanelAdmin.frmGestionarUsuarios"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    x:Name="gestionPersonalPage"
+    Title="Gestión de Personal"
+    BackgroundColor="{DynamicResource BasePageColor}">
+
+    <views:BasePage.PageContent>
+        <ScrollView VerticalScrollBarVisibility="Default">
+            <VerticalStackLayout Spacing="25" Padding="20,10">
+
+                <Label Text="Gestión de Barberos"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="{DynamicResource PrimaryColor}"/>
+
+                <Frame CornerRadius="14"
+                       HasShadow="True"
+                       BackgroundColor="{DynamicResource White}"
+                       BorderColor="{DynamicResource Gray400}"
+                       Padding="20"
+                       HorizontalOptions="FillAndExpand">
+
+                    <VerticalStackLayout Spacing="15">
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Barbero existente:"
+                                   FontSize="16"
+                                   TextColor="{DynamicResource BaseTextColor}"
+                                   FontAttributes="Bold"/>
+                            <Picker x:Name="cmbBarberos"
+                                    TextColor="{DynamicResource BaseTextColor}"
+                                    FontSize="16"
+                                    ItemDisplayBinding="{Binding nombre}"
+                                    Title="Seleccione un barbero"
+                                    BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                    HeightRequest="75"/>
+                        </VerticalStackLayout>
+
+                        <Grid ColumnDefinitions="*,15,*" ColumnSpacing="5">
+                            <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                <Label Text="Nombre"
+                                       FontSize="16"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       FontAttributes="Bold"/>
+                                <Entry x:Name="txtNombreBarbero"
+                                       Placeholder="Nombre"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                       FontSize="16"
+                                       HeightRequest="50"/>
+                            </VerticalStackLayout>
+
+                            <BoxView Grid.Column="1" Color="Transparent"/>
+
+                            <VerticalStackLayout Grid.Column="2" Spacing="5">
+                                <Label Text="Apellido"
+                                       FontSize="16"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       FontAttributes="Bold"/>
+                                <Entry x:Name="txtApellidoBarbero"
+                                       Placeholder="Apellido"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                       FontSize="16"
+                                       HeightRequest="50"/>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Correo Electrónico"
+                                   FontSize="16"
+                                   TextColor="{DynamicResource BaseTextColor}"
+                                   FontAttributes="Bold"/>
+                            <Entry x:Name="txtCorreoBarbero"
+                                   Placeholder="correo@ejemplo.com"
+                                   Keyboard="Email"
+                                   TextColor="{DynamicResource BaseTextColor}"
+                                   BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                   FontSize="16"
+                                   HeightRequest="50"/>
+                        </VerticalStackLayout>
+
+                        <Grid ColumnDefinitions="*,15,*" ColumnSpacing="5">
+                            <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                <Label Text="Teléfono"
+                                       FontSize="16"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       FontAttributes="Bold"/>
+                                <Entry x:Name="txtTelefonoBarbero"
+                                       Placeholder="88888888"
+                                       Keyboard="Telephone"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                       FontSize="16"
+                                       HeightRequest="50"/>
+                            </VerticalStackLayout>
+
+                            <BoxView Grid.Column="1" Color="Transparent"/>
+
+                            <VerticalStackLayout Grid.Column="2" Spacing="5">
+                                <Label Text="Contraseña"
+                                       FontSize="16"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       FontAttributes="Bold"/>
+                                <Entry x:Name="txtPasswordBarbero"
+                                       Placeholder="Contraseña"
+                                       IsPassword="True"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                       FontSize="16"
+                                       HeightRequest="50"/>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Grid ColumnDefinitions="*,10,*,10,*" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                    <Button x:Name="btnEliminarBarbero"
+                            Clicked="btnEliminarBarbero_Clicked"
+                            Grid.Column="0"
+                            Text="Eliminar"
+                            BackgroundColor="{DynamicResource ErrorColor}"
+                            TextColor="{DynamicResource White}"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="50"
+                            CornerRadius="10">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" 
+                                         Binding="{Binding Source={x:Reference cmbBarberos}, Path=SelectedIndex}" 
+                                         Value="-1">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <BoxView Grid.Column="1" Color="Transparent"/>
+
+                    <Button x:Name="btnActualizarBarbero"
+                            Clicked="btnActualizarBarbero_Clicked"
+                            Grid.Column="2"
+                            Text="Actualizar"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            TextColor="{DynamicResource White}"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="50"
+                            CornerRadius="10">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" 
+                                         Binding="{Binding Source={x:Reference cmbBarberos}, Path=SelectedIndex}" 
+                                         Value="-1">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtNombreBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtApellidoBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtCorreoBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtTelefonoBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtPasswordBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <BoxView Grid.Column="3" Color="Transparent"/>
+
+                    <Button x:Name="btnAgregarBarbero"
+                            Clicked="btnAgregarBarbero_Clicked"
+                            Grid.Column="4"
+                            Text="Agregar"
+                            BackgroundColor="{DynamicResource OkColor}"
+                            TextColor="{DynamicResource White}"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="50"
+                            CornerRadius="10">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtNombreBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtApellidoBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtCorreoBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtTelefonoBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference txtPasswordBarbero}, Path=Text.Length}"
+                                         Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Grid>
+
+                <BoxView HeightRequest="1" 
+                         BackgroundColor="{DynamicResource Gray300}" 
+                         Margin="0,20"/>
+
+                <Label Text="Gestión de Administradores"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="{DynamicResource PrimaryColor}"/>
+
+                <Frame CornerRadius="14"
+                       HasShadow="True"
+                       BackgroundColor="{DynamicResource White}"
+                       BorderColor="{DynamicResource Gray400}"
+                       Padding="20"
+                       HorizontalOptions="FillAndExpand">
+
+                    <VerticalStackLayout Spacing="15">
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Administrador existente:"
+                                   FontSize="16"
+                                   TextColor="{DynamicResource BaseTextColor}"
+                                   FontAttributes="Bold"/>
+                            <Picker x:Name="cmbAdministradores"
+                                    TextColor="{DynamicResource BaseTextColor}"
+                                    FontSize="16"
+                                    ItemDisplayBinding="{Binding nombre}"
+                                    Title="Seleccione un administrador"
+                                    BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                    HeightRequest="75"/>
+                        </VerticalStackLayout>
+
+                        <Grid ColumnDefinitions="*,15,*" ColumnSpacing="5">
+                            <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                <Label Text="Nombre"
+                                       FontSize="16"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       FontAttributes="Bold"/>
+                                <Entry x:Name="txtNombreAdmin"
+                                       Placeholder="Nombre"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                       FontSize="16"
+                                       HeightRequest="50"/>
+                            </VerticalStackLayout>
+
+                            <BoxView Grid.Column="1" Color="Transparent"/>
+
+                            <VerticalStackLayout Grid.Column="2" Spacing="5">
+                                <Label Text="Apellido"
+                                       FontSize="16"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       FontAttributes="Bold"/>
+                                <Entry x:Name="txtApellidoAdmin"
+                                       Placeholder="Apellido"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                       FontSize="16"
+                                       HeightRequest="50"/>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Correo Electrónico"
+                                   FontSize="16"
+                                   TextColor="{DynamicResource BaseTextColor}"
+                                   FontAttributes="Bold"/>
+                            <Entry x:Name="txtCorreoAdmin"
+                                   Placeholder="correo@ejemplo.com"
+                                   Keyboard="Email"
+                                   TextColor="{DynamicResource BaseTextColor}"
+                                   BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                   FontSize="16"
+                                   HeightRequest="50"/>
+                        </VerticalStackLayout>
+
+                        <Grid ColumnDefinitions="*,15,*" ColumnSpacing="5">
+                            <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                <Label Text="Teléfono"
+                                       FontSize="16"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       FontAttributes="Bold"/>
+                                <Entry x:Name="txtTelefonoAdmin"
+                                       Placeholder="88888888"
+                                       Keyboard="Telephone"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                       FontSize="16"
+                                       HeightRequest="50"/>
+                            </VerticalStackLayout>
+
+                            <BoxView Grid.Column="1" Color="Transparent"/>
+
+                            <VerticalStackLayout Grid.Column="2" Spacing="5">
+                                <Label Text="Contraseña"
+                                       FontSize="16"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       FontAttributes="Bold"/>
+                                <Entry x:Name="txtPasswordAdmin"
+                                       Placeholder="Contraseña"
+                                       IsPassword="True"
+                                       TextColor="{DynamicResource BaseTextColor}"
+                                       BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                                       FontSize="16"
+                                       HeightRequest="50"/>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Grid ColumnDefinitions="*,10,*,10,*" ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                    <Button x:Name="btnEliminarAdmin"
+                            Clicked="btnEliminarAdmin_Clicked"
+                            Grid.Column="0"
+                            Text="Eliminar"
+                            BackgroundColor="{DynamicResource ErrorColor}"
+                            TextColor="{DynamicResource White}"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="50"
+                            CornerRadius="10">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" 
+                                         Binding="{Binding Source={x:Reference cmbAdministradores}, Path=SelectedIndex}" 
+                                         Value="-1">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <BoxView Grid.Column="1" Color="Transparent"/>
+
+                    <Button x:Name="btnActualizarAdmin"
+                            Clicked="btnActualizarAdmin_Clicked"
+                            Grid.Column="2"
+                            Text="Actualizar"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            TextColor="{DynamicResource White}"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="50"
+                            CornerRadius="10">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" 
+                                        Binding="{Binding Source={x:Reference cmbAdministradores}, Path=SelectedIndex}" 
+                                        Value="-1">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtNombreAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtApellidoAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtCorreoAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtTelefonoAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtPasswordAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <BoxView Grid.Column="3" Color="Transparent"/>
+
+                    <Button x:Name="btnAgregarAdmin"
+                            Clicked="btnAgregarAdmin_Clicked"
+                            Grid.Column="4"
+                            Text="Agregar"
+                            BackgroundColor="{DynamicResource OkColor}"
+                            TextColor="{DynamicResource White}"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HeightRequest="50"
+                            CornerRadius="10">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtNombreAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtApellidoAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtCorreoAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtTelefonoAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button"
+                                        Binding="{Binding Source={x:Reference txtPasswordAdmin}, Path=Text.Length}"
+                                        Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="BackgroundColor" Value="{DynamicResource Gray300}"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Grid>
+
+                <ActivityIndicator IsVisible="{Binding IsBusy}" 
+                                   IsRunning="{Binding IsBusy}"
+                                   Color="{DynamicResource PrimaryColor}"
+                                   HorizontalOptions="Center"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </views:BasePage.PageContent>
+    </views:BasePage>

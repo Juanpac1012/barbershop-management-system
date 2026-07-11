@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage  x:Class="MauiKit.Views.PanelGeneral.frmActivarCuentaCorreo"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MauiKit.Controls"
+    xmlns:handlers="clr-namespace:MauiKit.Handlers"
+    xmlns:localization="clr-namespace:MauiKit.Resources.Translations"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    BackgroundColor="{DynamicResource MainWrapperBackgroundColor}" >
+
+    <views:BasePage.PageContent>
+        <Grid ColumnDefinitions="{OnIdiom Desktop='2*, 6*, 2*', Phone='Auto, *, Auto', Tablet='2*, 6*, 2*', Default='Auto, *, Auto'}">
+            <ScrollView Grid.Column="1" VerticalScrollBarVisibility="Never">
+                <StackLayout
+                    Margin="30"
+                    Spacing="20"
+                    VerticalOptions="Fill">
+                    <StackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border
+                            Padding="0"
+                            Background="{DynamicResource PrimaryColor}"
+                            HeightRequest="100"
+                            HorizontalOptions="Center"
+                            Stroke="{DynamicResource White}"
+                            StrokeShape="{RoundRectangle CornerRadius=20}"
+                            StrokeThickness="3"
+                            WidthRequest="100">
+                            <controls:RoundedCornerImage
+                                Background="{DynamicResource White}"
+                                HeightRequest="70"
+                                HorizontalOptions="Center"
+                                Source="logobarberia.png"
+                                Stroke="Transparent"
+                                StrokeShape="{RoundRectangle CornerRadius=50}"
+                                VerticalOptions="Center"
+                                WidthRequest="70" />
+                        </Border>
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource Title2}"
+                            Text="Activar Cuenta" />
+                        <Label
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource PrimaryLabel}"
+                            Text="Ingrese su correo electrónico para recibir el código para activar su cuenta" />
+                    </StackLayout>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <Grid>
+                            <Label
+                               FontFamily="LineAwesome"
+                               FontSize="22"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="{x:Static views:LineAwesome.Phone}"
+                               TextColor="{DynamicResource BaseIconColor}"
+                               Margin="10,0" />
+                            <handlers:BorderlessEntry
+                                x:Name="txtCorreo"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                Keyboard="Email"
+                                Placeholder="Correo electrónico"
+                                PlaceholderColor="{DynamicResource BaseTextColor}"                            
+                                Margin="40,0,0,0" />
+                        </Grid>
+                    </Border>
+
+                    <Button
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        Clicked="ActivarCuenta_Clicked"
+                        CornerRadius="14"
+                        HeightRequest="50"
+                        Text="Continuar"
+                        TextColor="{DynamicResource White}" />
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </views:BasePage.PageContent>
+    </views:BasePage>

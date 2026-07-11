@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage  x:Class="MauiKit.Views.Acciones.AccionBienvenida"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animation="clr-namespace:RGPopup.Maui.Animations;assembly=RGPopup.Maui"
+    xmlns:rg="clr-namespace:RGPopup.Maui.Pages;assembly=RGPopup.Maui"
+    CloseWhenBackgroundIsClicked="False">
+
+    <rg:PopupPage.Animation>
+        <animation:MoveAnimation PositionIn="Bottom" PositionOut="Bottom" />
+    </rg:PopupPage.Animation>
+
+    <Border
+        Margin="20"
+        Background="{DynamicResource MainWrapperBackgroundColor}"
+        HorizontalOptions="{OnIdiom Desktop='Center', Tablet='Center', Phone='Fill'}"
+        VerticalOptions="Center">
+
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="20" />
+        </Border.StrokeShape>
+
+        <StackLayout Padding="20,30" Spacing="16">
+            <Image
+                HeightRequest="100"
+                HorizontalOptions="Center"
+                Source="ic_welcome.png" />
+
+            <Label
+                x:Name="lblWelcomeTitle"
+                FontAttributes="Bold"
+                FontSize="22"
+                HorizontalOptions="Center"
+                Text="¡Bienvenido, {0}!" />
+
+            <Label
+                x:Name="lblWelcomeSubtitle"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Has iniciado sesión correctamente."
+                FontSize="16" />
+
+            <Button
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                Clicked="Button_Clicked"
+                CornerRadius="25"
+                HeightRequest="50"
+                Text="Continuar"
+                TextColor="{DynamicResource White}"
+                WidthRequest="200" />
+        </StackLayout>
+    </Border>
+    </rg:PopupPage>

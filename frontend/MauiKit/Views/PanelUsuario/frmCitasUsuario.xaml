@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelUsuario.frmCitasUsuario"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:localization="clr-namespace:MauiKit.Resources.Translations"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    BackgroundColor="{DynamicResource BasePageColor}"
+    BaseTitleColor="{DynamicResource BaseTextColor}">
+
+    <views:BasePage.PageContent>
+        <Grid Padding="15" RowDefinitions="Auto, *">
+            <Grid Padding="0,15" ColumnDefinitions="Auto, *" ColumnSpacing="10">
+                <Label
+                    FontFamily="MaterialDesign"
+                    FontSize="26"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource Title2}"
+                    Text="Mis Citas"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <RefreshView Grid.Row="1">
+                <CollectionView x:Name="citasUsuarioCollectionView" SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="12" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Padding="15"
+                                CornerRadius="20"
+                                BackgroundColor="{DynamicResource White}"
+                                BorderColor="{DynamicResource Gray400}"
+                                HasShadow="True">
+                                <Grid ColumnDefinitions="*, Auto"
+                                      RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+
+                                    <!-- Fecha -->
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        Text="{Binding fechaHora, StringFormat='{0:dd/MM/yyyy hh:mm tt}'}"
+                                        TextColor="{DynamicResource PrimaryColor}" />
+
+                                    <!-- Estado -->
+                                    <Frame
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Padding="8,4"
+                                        BackgroundColor="{Binding estado}"
+                                        CornerRadius="12"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            FontSize="12"
+                                            Text="{Binding estado}"
+                                            TextColor="{DynamicResource Black}"
+                                            VerticalTextAlignment="Center" />
+                                    </Frame>
+
+                                    <!-- Servicio -->
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0,6"
+                                        FontSize="14"
+                                        Text="{Binding servicio.nombre, StringFormat='Servicio: {0}'}"
+                                        TextColor="{DynamicResource BaseTextColor}" />
+
+                                    <!-- Barbero -->
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="2"
+                                        Grid.ColumnSpan="2"
+                                        FontSize="14"
+                                        Text="{Binding barbero.nombre, StringFormat='Barbero: {0}'}"
+                                        TextColor="{DynamicResource BaseTextColor}" />
+
+                                    <!-- Duración y Precio -->
+                                    <HorizontalStackLayout
+                                        Grid.Column="0"
+                                        Grid.Row="3"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0,8,0,0"
+                                        Spacing="16">
+                                        <Label
+                                            FontSize="14"
+                                            Text="{Binding servicio.duracion_minutos, StringFormat='Duración: {0} min'}"
+                                            TextColor="{DynamicResource BaseTextColor}" />
+                                        <Label
+                                            FontSize="14"
+                                            FontAttributes="Bold"
+                                            Text="{Binding servicio.precio, StringFormat='Precio: ₡{0:N2}'}"
+                                            TextColor="{DynamicResource OkColor}" />
+                                    </HorizontalStackLayout>
+
+                                    <!-- Botón o mensaje -->
+                                    <StackLayout
+                                        Grid.Row="4"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0,10,0,0"
+                                        Orientation="Horizontal"
+                                        HorizontalOptions="End"
+                                        Spacing="10">
+                                        <Button
+                                            x:Name="btnEliminarCita"
+                                            HeightRequest="40"
+                                            CornerRadius="10"
+                                            BackgroundColor="{DynamicResource Red}"
+                                            Text="Cancelar cita"
+                                            TextColor="{DynamicResource White}"
+                                            FontSize="14"
+                                            Clicked="btnEliminarCita_Clicked"
+                                            CommandParameter="{Binding idCita}"
+                                            IsVisible="False">
+                                            <Button.Triggers>
+                                                <MultiTrigger TargetType="Button">
+                                                    <MultiTrigger.Conditions>
+                                                        <BindingCondition Binding="{Binding estado}" Value="Pendiente" />
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="IsVisible" Value="True" />
+                                                </MultiTrigger>
+                                            </Button.Triggers>
+                                        </Button>
+
+                                        <Label
+                                            x:Name="lblNoAsistio"
+                                            FontSize="12"
+                                            TextColor="{DynamicResource Gray600}"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            Text="Por favor comunicarse con la barbería"
+                                            FontAttributes="Italic"
+                                            IsVisible="False">
+                                            <Label.Triggers>
+                                                <MultiTrigger TargetType="Label">
+                                                    <MultiTrigger.Conditions>
+                                                        <BindingCondition Binding="{Binding estado}" Value="No asistió" />
+                                                    </MultiTrigger.Conditions>
+                                                    <Setter Property="IsVisible" Value="True" />
+                                                </MultiTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </Grid>
+    </views:BasePage.PageContent>
+</views:BasePage>

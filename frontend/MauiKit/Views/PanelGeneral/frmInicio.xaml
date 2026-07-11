@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelGeneral.frmInicio"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:AlohaKit.Animations;assembly=AlohaKit.Animations"
+    xmlns:controls="clr-namespace:MauiKit.Controls"
+    xmlns:localization="clr-namespace:MauiKit.Resources.Translations"
+    xmlns:views="clr-namespace:MauiKit.Views">
+
+    <views:BasePage.PageContent>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout
+                Grid.Row="1"
+                Margin="0"
+                Background="{DynamicResource BasePageColor}" />
+
+            <Grid>
+                <Image
+                    AnchorX="0.5"
+                    AnchorY="1"
+                    Aspect="AspectFill"
+                    HeightRequest="{OnIdiom Phone=220,
+                                            Tablet=320,
+                                            Desktop=450}"
+                    InputTransparent="true"
+                    Opacity="1"
+                    Source="barberiainicio.png"
+                    VerticalOptions="Start" />
+
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Offset="0.1" Color="#00000000" />
+                            <GradientStop Offset="1.0" Color="#a0000000" />
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                </Grid>
+
+                <VisualElement.Behaviors>
+                    <animations:AnimateProgressDouble
+                        Maximum="{OnIdiom Phone=190,
+                                          Tablet=290,
+                                          Desktop=420}"
+                        Minimum="0"
+                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}"
+                        TargetProperty="VisualElement.TranslationY"
+                        From="0"
+                        To="-100" />
+
+                    <animations:AnimateProgressDouble
+                        Maximum="{OnIdiom Phone=190,
+                                          Tablet=290,
+                                          Desktop=420}"
+                        Minimum="100"
+                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}"
+                        TargetProperty="VisualElement.Opacity"
+                        From="1"
+                        To="0" />
+
+                    <animations:AnimateProgressDouble
+                        Maximum="{OnIdiom Phone=220,
+                                          Tablet=320,
+                                          Desktop=450}"
+                        Minimum="0"
+                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}"
+                        TargetProperty="VisualElement.Scale"
+                        From="1"
+                        To="1.35" />
+                </VisualElement.Behaviors>
+            </Grid>
+
+            <ScrollView Grid.RowSpan="2">
+                <VisualElement.Behaviors>
+                    <animations:ScrollViewScrollBehavior x:Name="ScrollBehavior" />
+                </VisualElement.Behaviors>
+
+                <Grid>
+                    <StackLayout
+                       Margin="{OnIdiom Phone='0,230,0,0',
+                                     Tablet='0,330,0,0',
+                                     Desktop='0,460,0,0'}"
+                       BackgroundColor="{DynamicResource BasePageColor}"
+                       IsVisible="{OnIdiom Phone='True',
+                                        Tablet='True',
+                                        Desktop='False'}" />
+
+                    <StackLayout
+                       Margin="{OnIdiom Phone='0,230,0,0',
+                                     Tablet='0,330,0,0',
+                                     Desktop='0,460,0,0'}"
+                       Padding="40,30"
+                       Spacing="30"
+                       VerticalOptions="Fill">
+
+                        <StackLayout HorizontalOptions="Fill">
+                            <Label
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               HorizontalOptions="Start"
+                               Text="SOBRE NUESTRA BARBERÍA" />
+                            <Label
+                               Margin="0,10"
+                               Text="En esta barbería combinamos estilo, cuidado personal y tecnología para ofrecerte una experiencia moderna y personalizada. Tu mejor look, a solo unos toques."
+                               TextColor="{DynamicResource Gray600}" />
+                            <Label
+                               Margin="0,10"
+                               Text="Nuestro equipo de barberos certificados domina tanto las técnicas tradicionales como las últimas tendencias en cortes y afeitados."
+                               TextColor="{DynamicResource Gray600}" />
+                        </StackLayout>
+
+                        <Border
+                           Margin="-3,-5,-3,0"
+                           Padding="20"
+                           Background="{DynamicResource MainWrapperBackgroundColor}">
+                            <VerticalStackLayout Spacing="20">
+                                <Label
+                                   FontAttributes="Bold"
+                                   FontSize="18"
+                                   Text="NUESTROS SERVICIOS"
+                                   HorizontalOptions="Center" />
+
+                                <Grid ColumnSpacing="25" RowSpacing="25">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <VerticalStackLayout Grid.Column="0" Spacing="10">
+                                        <Frame 
+                                           Padding="0"
+                                           CornerRadius="10"
+                                           HasShadow="False"
+                                           HeightRequest="{OnIdiom Phone=150,
+                                                                Tablet=180,
+                                                                Desktop=200}"
+                                           HorizontalOptions="Fill">
+                                            <Image
+                                              Source="corteclasico.png"
+                                              Aspect="AspectFill" />
+                                        </Frame>
+                                        <Label 
+                                           Text="Corte Clásico" 
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           HorizontalOptions="Center" />
+                                        <Label 
+                                           Text="₡4000" 
+                                           FontSize="14"
+                                           TextColor="{DynamicResource PrimaryColor}"
+                                           HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout Grid.Column="1" Spacing="10">
+                                        <Frame 
+                                           Padding="0"
+                                           CornerRadius="10"
+                                           HasShadow="False"
+                                           HeightRequest="{OnIdiom Phone=150,
+                                                                Tablet=180,
+                                                                Desktop=200}"
+                                           HorizontalOptions="Fill">
+                                            <Image
+                                              Source="afeitadocompleto.png"
+                                              Aspect="AspectFill" />
+                                        </Frame>
+                                        <Label 
+                                          Text="Afeitado Tradicional" 
+                                          FontAttributes="Bold"
+                                          FontSize="16"
+                                          HorizontalOptions="Center" />
+                                        <Label 
+                                          Text="₡6000" 
+                                          FontSize="14"
+                                          TextColor="{DynamicResource PrimaryColor}"
+                                          HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </Grid>
+
+                                <Button
+                                   x:Name="btnServicios"
+                                   Margin="0,15"
+                                   Text="VER TODOS LOS SERVICIOS"
+                                   Style="{StaticResource OutlineButtonStyle}"
+                                   Clicked="btnServicios_Clicked" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Image
+                           Margin="-40,0"
+                           Aspect="AspectFill"
+                           HeightRequest="{OnIdiom Phone=180,
+                                              Tablet=220,
+                                              Desktop=280}"
+                           Source="barberiainterior.png" />
+
+                        <StackLayout Spacing="15">
+                            <Label
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               Text="HORARIO Y UBICACIÓN"
+                               HorizontalOptions="Center" />
+
+                            <Frame 
+                               CornerRadius="12"
+                               Padding="15"
+                               BackgroundColor="{DynamicResource CardBackground}">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label
+                                    Text="⏰ Horario de atención"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    TextColor="{DynamicResource PrimaryColor}" />
+
+                                    <Label Text="Lunes a Sábados: 8:00 AM - 8:00 PM" />
+                                    <Label Text="Domingos: Cerrado" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <Frame 
+                               CornerRadius="12"
+                               Padding="15"
+                               BackgroundColor="{DynamicResource CardBackground}">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label
+                                      Text="📍 Nuestra ubicación"
+                                      FontAttributes="Bold"
+                                      FontSize="16"
+                                      TextColor="{DynamicResource PrimaryColor}" />
+
+                                    <Label Text="Calle Principal 123, Local 4" />
+                                    <Label Text="Heredia, Costa Rica" />
+
+                                    <Button
+                                       Margin="0,10,0,0"
+                                       Text="ABRIR EN MAPS"
+                                       Style="{StaticResource OutlineButtonStyle}"
+                                       Command="{Binding OpenMapsCommand}" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <Button
+                               x:Name="btnReservar"
+                               Text="RESERVAR CITA"
+                               Clicked="btnReservar_Clicked"
+                               Style="{StaticResource PrimaryButtonStyle}"/>
+                        </StackLayout>
+
+                        <StackLayout 
+                           Orientation="Horizontal" 
+                           HorizontalOptions="Center" 
+                           Spacing="25"
+                           Margin="0,10">
+                            <Image Source="instagram_icon.png" 
+                               HeightRequest="{OnIdiom Phone=30,
+                                                      Tablet=35,
+                                                      Desktop=40}" />
+                            <Image Source="facebook_icon.png" 
+                               HeightRequest="{OnIdiom Phone=30,
+                                                      Tablet=35,
+                                                      Desktop=40}" />
+                            <Image Source="whatsapp_icon.png" 
+                               HeightRequest="{OnIdiom Phone=30,
+                                                      Tablet=35,
+                                                      Desktop=40}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
+    </views:BasePage.PageContent>
+    </views:BasePage>

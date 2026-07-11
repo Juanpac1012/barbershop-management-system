@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelGeneral.frmCambioContraPerfil2"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MauiKit.Controls"
+    xmlns:handlers="clr-namespace:MauiKit.Handlers"
+    xmlns:localization="clr-namespace:MauiKit.Resources.Translations"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    Title=""
+    BackgroundColor="{DynamicResource BasePageColor}">
+
+    <views:BasePage.PageContent>
+
+        <Grid ColumnDefinitions="{OnIdiom Desktop='2*, 6*, 2*', Phone='Auto, *, Auto', Tablet='2*, 6*, 2*', Default='Auto, *, Auto'}">
+            <ScrollView Grid.Column="1" VerticalScrollBarVisibility="Never">
+                <StackLayout
+                    Margin="30"
+                    Spacing="20"
+                    VerticalOptions="Fill">
+                    <StackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border
+                            Padding="0"
+                            Background="{DynamicResource PrimaryColor}"
+                            HeightRequest="100"
+                            HorizontalOptions="Center"
+                            Stroke="{DynamicResource White}"
+                            StrokeShape="{RoundRectangle CornerRadius=20}"
+                            StrokeThickness="3"
+                            WidthRequest="100">
+                            <controls:RoundedCornerImage
+                                Background="{DynamicResource White}"
+                                HeightRequest="70"
+                                HorizontalOptions="Center"
+                                Source="logobarberia.png"
+                                Stroke="Transparent"
+                                StrokeShape="{RoundRectangle CornerRadius=50}"
+                                VerticalOptions="Center"
+                                WidthRequest="70" />
+                        </Border>
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource Title2}"
+                            Text="Nueva contraseña" />
+                        <Label
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource PrimaryLabel}"
+                            Text="Cambiar la contraseña" />
+                    </StackLayout>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <Grid>
+                            <Label
+                               FontFamily="LineAwesome"
+                               FontSize="22"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="{x:Static views:LineAwesome.Lock}"
+                               TextColor="{DynamicResource BaseIconColor}"
+                               Margin="10,0" />
+
+                            <handlers:BorderlessEntry
+                                 x:Name="txtContraseña"
+                                 HeightRequest="50"
+                                 HorizontalOptions="Fill"
+                                 IsPassword="True"
+                                 Keyboard="Default"
+                                 Placeholder="Nueva contraseña"
+                                 PlaceholderColor="{DynamicResource BaseTextColor}" 
+                                 Margin="40,0,0,0"/>
+
+                            <Button
+                               x:Name="btnAlternarContraseña"
+                               BackgroundColor="Transparent"
+                               BorderWidth="0"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"
+                               Clicked="btnAlternarContraseña_Clicked">
+                                <Button.ImageSource>
+                                    <FontImageSource
+                                        FontFamily="MauiKitIcons"
+                                        Glyph="{x:Static views:MauiKitIcons.EyeOff}" 
+                                        Size="24"
+                                        Color="Black" />
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <Grid>
+                            <Label
+                               FontFamily="LineAwesome"
+                               FontSize="22"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="{x:Static views:LineAwesome.Lock}"
+                               TextColor="{DynamicResource BaseIconColor}"
+                               Margin="10,0" />
+
+                            <handlers:BorderlessEntry
+                                x:Name="txtConfirContraseña"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                IsPassword="True"
+                                Keyboard="Default"
+                                Placeholder="Confirmar Contraseña"
+                                PlaceholderColor="{DynamicResource BaseTextColor}"
+                                Margin="40,0,0,0"/>
+
+                            <Button
+                               x:Name="btnAlternarContraseñaConfir"
+                               BackgroundColor="Transparent"
+                               BorderWidth="0"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"
+                               Clicked="btnAlternarContraseñaConfir_Clicked">
+                                <Button.ImageSource>
+                                    <FontImageSource
+                                       FontFamily="MauiKitIcons"
+                                       Glyph="{x:Static views:MauiKitIcons.EyeOff}" 
+                                       Size="24"
+                                       Color="Black" />
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <Grid>
+                            <Label
+                               FontFamily="LineAwesome"
+                               FontSize="22"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               Text="{x:Static views:LineAwesome.Key}"
+                               TextColor="{DynamicResource BaseIconColor}"
+                               Margin="10,0" />
+                            <handlers:BorderlessEntry
+                                x:Name="txtCodigo"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                Keyboard="Numeric"
+                                Placeholder="Ingrese el código"
+                                PlaceholderColor="{DynamicResource BaseTextColor}" 
+                                Margin="40,0,0,0"/>
+                        </Grid>
+                    </Border>
+
+                    <Button
+                        x:Name="btnCambiarContraseña"
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        Clicked="btnCambiarContraseña_Clicked"
+                        CornerRadius="14"
+                        HeightRequest="50"
+                        Text="Guardar"
+                        TextColor="{DynamicResource White}" />
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </views:BasePage.PageContent>
+</views:BasePage>

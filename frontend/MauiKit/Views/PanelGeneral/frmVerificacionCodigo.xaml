@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelGeneral.frmVerificacionCodigo" 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MauiKit.Controls"
+    xmlns:handlers="clr-namespace:MauiKit.Handlers"
+    xmlns:localization="clr-namespace:MauiKit.Resources.Translations"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    BackgroundColor="{DynamicResource MainWrapperBackgroundColor}">
+
+    <views:BasePage.PageContent>
+
+        <Grid ColumnDefinitions="{OnIdiom Desktop='2*, 6*, 2*', Phone='Auto, *, Auto', Tablet='2*, 6*, 2*', Default='Auto, *, Auto'}">
+            <ScrollView Grid.Column="1" VerticalScrollBarVisibility="Never">
+                <StackLayout
+                    Margin="30"
+                    Spacing="20"
+                    VerticalOptions="Fill">
+                    <StackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border
+                            Padding="0"
+                            Background="{DynamicResource PrimaryColor}"
+                            HeightRequest="100"
+                            HorizontalOptions="Center"
+                            Stroke="{DynamicResource White}"
+                            StrokeShape="{RoundRectangle CornerRadius=20}"
+                            StrokeThickness="3"
+                            WidthRequest="100">
+                            <controls:RoundedCornerImage
+                                Background="{DynamicResource White}"
+                                HeightRequest="70"
+                                HorizontalOptions="Center"
+                                Source="logobarberia.png"
+                                Stroke="Transparent"
+                                StrokeShape="{RoundRectangle CornerRadius=50}"
+                                VerticalOptions="Center"
+                                WidthRequest="70" />
+                        </Border>
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource Title2}"
+                            Text="Verificar código" />
+                        <Label
+                            HorizontalTextAlignment="Start"
+                            Style="{StaticResource PrimaryLabel}"
+                            Text="Ingresar el código recibido en el correo electrónico" />
+                    </StackLayout>
+
+                    <Grid ColumnSpacing="5" HorizontalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border
+                            Margin="0"
+                            Padding="0"
+                            Background="{DynamicResource EntryAndEditorsBackgroundColor}"
+                            HeightRequest="60">
+                            <handlers:BorderlessEntry
+                                 x:Name="Numero1"
+                                 Margin="8,0"
+                                 toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Numero2}"
+                                 FontFamily="BoldFont"
+                                 FontSize="20"
+                                 HeightRequest="50"
+                                 HorizontalOptions="Fill"
+                                 HorizontalTextAlignment="Center"
+                                 Keyboard="Numeric"
+                                 MaxLength="1"
+                                 Placeholder=""
+                                 PlaceholderColor="{DynamicResource BaseTextColor}"
+                                 ReturnType="Next" />
+                        </Border>
+
+                        <Border
+                           Grid.Column="1"
+                           Margin="0"
+                           Padding="0"
+                           Background="{DynamicResource EntryAndEditorsBackgroundColor}"
+                           HeightRequest="60">
+                            <handlers:BorderlessEntry
+                                 x:Name="Numero2"
+                                 Margin="8,0"
+                                 toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Numero3}"
+                                 FontFamily="BoldFont"
+                                 FontSize="20"
+                                 HeightRequest="50"
+                                 HorizontalOptions="Fill"
+                                 HorizontalTextAlignment="Center"
+                                 Keyboard="Numeric"
+                                 MaxLength="1"
+                                 Placeholder=""
+                                 PlaceholderColor="{DynamicResource BaseTextColor}"
+                                 ReturnType="Next" />
+                        </Border>
+
+                        <Border
+                           Grid.Column="2"
+                           Margin="0"
+                           Padding="0"
+                           Background="{DynamicResource EntryAndEditorsBackgroundColor}"
+                           HeightRequest="60">
+                            <handlers:BorderlessEntry
+                                x:Name="Numero3"
+                                Margin="8,0"
+                                toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Numero4}"
+                                FontFamily="BoldFont"
+                                FontSize="20"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                HorizontalTextAlignment="Center"
+                                Keyboard="Numeric"
+                                MaxLength="1"
+                                Placeholder=""
+                                PlaceholderColor="{DynamicResource BaseTextColor}"
+                                ReturnType="Next" />
+                        </Border>
+
+                        <Border
+                            Grid.Column="3"
+                            Margin="0"
+                            Padding="0"
+                            Background="{DynamicResource EntryAndEditorsBackgroundColor}"
+                            HeightRequest="60">
+                            <handlers:BorderlessEntry
+                                x:Name="Numero4"
+                                Margin="8,0"
+                                FontFamily="BoldFont"
+                                FontSize="20"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                HorizontalTextAlignment="Center"
+                                Keyboard="Numeric"
+                                MaxLength="1"
+                                Placeholder=""
+                                PlaceholderColor="{DynamicResource BaseTextColor}"
+                                ReturnType="Next" />
+                        </Border>
+
+                        <Border
+                            Grid.Column="4"
+                            Margin="0"
+                            Padding="0"
+                            Background="{DynamicResource EntryAndEditorsBackgroundColor}"
+                            HeightRequest="60">
+                            <handlers:BorderlessEntry
+                                x:Name="Numero5"
+                                Margin="8,0"
+                                FontFamily="BoldFont"
+                                FontSize="20"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                HorizontalTextAlignment="Center"
+                                Keyboard="Numeric"
+                                MaxLength="1"
+                                Placeholder=""
+                                PlaceholderColor="{DynamicResource BaseTextColor}"
+                                ReturnType="Done" />
+                        </Border>
+                    </Grid>
+
+                    <Button
+                        x:Name="btnVerificacion"
+                        Margin="0,15"
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        Clicked="btnVerificacion_Clicked"
+                        CornerRadius="14"
+                        HeightRequest="50"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Text="Continuar" />
+
+                    <Label
+                        Margin="0,0,0,20"
+                        FontFamily="RegularFont"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontFamily="RegularFont" Text="¿No has recibido el código?" />
+                                <Span Text="  " />
+                                <Span
+                                    FontAttributes="Bold"
+                                    FontFamily="RegularFont"
+                                    Text="Reenviar"
+                                    TextColor="{DynamicResource PrimaryColor}" >
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="btnRenviarCodigo_Clicked" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </views:BasePage.PageContent>
+</views:BasePage>

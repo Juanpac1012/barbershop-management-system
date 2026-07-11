@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BasePage x:Class="MauiKit.Views.PanelGeneral.frmGestionarPerfil"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MauiKit.Controls"
+    xmlns:handlers="clr-namespace:MauiKit.Handlers"
+    xmlns:views="clr-namespace:MauiKit.Views"
+    BackgroundColor="{DynamicResource BasePageColor}"
+    BaseTitleColor="{DynamicResource PrimaryColor}">
+
+    <views:BasePage.PageContent>
+        <ScrollView>
+            <Grid RowDefinitions="Auto,*,Auto" RowSpacing="0" Padding="20">
+
+                <VerticalStackLayout Grid.Row="0" Spacing="15" HorizontalOptions="Center" Margin="0,20">
+                    <Frame
+                        HeightRequest="120"
+                        WidthRequest="120"
+                        CornerRadius="60"
+                        HasShadow="True"
+                        BorderColor="{DynamicResource PrimaryColor}"
+                        Padding="0"
+                        HorizontalOptions="Center">
+                        <Image
+                            Source="imagenperfil.png"
+                            Aspect="AspectFill"
+                            HeightRequest="116"
+                            WidthRequest="116">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChangePhotoCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+                    <Label Text="" 
+                           TextColor="{DynamicResource PrimaryColor}"
+                           FontSize="14"
+                           HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangePhotoCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" Spacing="20" Margin="0,30,0,0">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Nombre" TextColor="{DynamicResource Black}" FontSize="14"/>
+                        <Frame CornerRadius="12" BorderColor="{DynamicResource MainWrapperBackgroundColor}" Padding="0">
+                            <handlers:BorderlessEntry
+                                x:Name="txtNombre"
+                                HeightRequest="50"
+                                Placeholder="Ingrese su nombre"
+                                FontSize="14"
+                                TextColor="{DynamicResource Black}" 
+                                PlaceholderColor="#BDBDBD"/>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Apellido" TextColor="{DynamicResource Black}" FontSize="14"/>
+                        <Frame CornerRadius="12" BorderColor="{DynamicResource MainWrapperBackgroundColor}" Padding="0">
+                            <handlers:BorderlessEntry
+                                x:Name="txtApellido"
+                                HeightRequest="50"
+                                Placeholder="Ingrese su apellido"
+                                FontSize="14"
+                                TextColor="{DynamicResource Black}" 
+                                PlaceholderColor="#BDBDBD"/>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Correo electrónico" TextColor="{DynamicResource Black}" FontSize="14"/>
+                        <Frame CornerRadius="12" BorderColor="{DynamicResource Gray400}" Padding="10,0" BackgroundColor="{DynamicResource Gray100}">
+                            <Label
+                                x:Name="lblCorreo"
+                                FontSize="14"
+                                TextColor="{DynamicResource Gray700}"
+                                VerticalTextAlignment="Center"
+                                VerticalOptions="Center"
+                                HeightRequest="50"
+                                LineBreakMode="MiddleTruncation"/>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Teléfono" TextColor="{DynamicResource Black}" FontSize="14"/>
+                        <Frame CornerRadius="12" BorderColor="{DynamicResource MainWrapperBackgroundColor}" Padding="0">
+                            <handlers:BorderlessEntry
+                                x:Name="txtTelefono"
+                                HeightRequest="50"
+                                Keyboard="Telephone"
+                                Placeholder="8888-8888"
+                                FontSize="14"
+                                TextColor="{DynamicResource Black}"
+                                PlaceholderColor="#BDBDBD"/>
+                        </Frame>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="2" Spacing="15" Margin="0,30,0,30">
+                    <Button
+                        Text="Guardar cambios"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        BackgroundColor="{DynamicResource PrimaryColor}"
+                        TextColor="{DynamicResource White}"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Clicked="btnActualizarUsuario_Clicked"/>
+
+                    <Button
+                        Text="Eliminar cuenta"
+                        CornerRadius="12"
+                        HeightRequest="50"
+                        BackgroundColor="{DynamicResource Red}"
+                        TextColor="{DynamicResource White}"
+                        FontSize="14"
+                        BorderColor="{DynamicResource Red}"
+                        BorderWidth="1"
+                        Clicked="btnEliminarUsuario_Clicked"/>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+    </views:BasePage.PageContent>
+    </views:BasePage>
